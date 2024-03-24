@@ -84,7 +84,7 @@ const LoginModal = () => {
       />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="flex flex-row items-center justify-center gap-2">
-          <div>Don't have account yet?</div>
+          <div>Do not have account yet?</div>
 
           <div
             onClick={handleSwitch}
