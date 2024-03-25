@@ -28,5 +28,5 @@ const page = async ({searchParams} : ListingCardProps) => {
     </>
   );
 };
-
+export const dynamic = "force-dynamic";
 export default page;
