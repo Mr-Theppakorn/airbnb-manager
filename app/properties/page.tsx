@@ -1,37 +1,17 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import getReservations from "@/app/actions/getReservations";
 import EmptyState from "@/components/EmptyState";
 import PropertiesClient from "./PropertiesClient";
 import getListings from "../actions/getListings";
-import { SafeListing, SafeUser } from "@/types";
 
-export const getServerSideProps = async () => {
+const PropertiesPage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return {
-      props: {},
-    };
+    return <EmptyState title="Unauthorized" subtitle="Please login" />;
   }
 
   const listings = await getListings({ userId: currentUser.id });
-
-  return {
-    props: {
-      listings,
-      currentUser,
-    },
-  };
-};
-
-interface TripsClientProps {
-  listings: SafeListing[];
-  currentUser?: SafeUser | null;
-}
-
-const PropertiesPage = ({ listings, currentUser }: TripsClientProps) => {
-  if (!currentUser) {
-    return <EmptyState title="Unauthorized" subtitle="Please login" />;
-  }
 
   if (listings.length === 0) {
     return (
@@ -48,5 +28,5 @@ const PropertiesPage = ({ listings, currentUser }: TripsClientProps) => {
     </div>
   );
 };
-
+export const dynamic = "force-dynamic";
 export default PropertiesPage;
