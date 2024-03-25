@@ -1,7 +1,6 @@
 import prisma from "@/libs/prismadb";
 
 export interface IListingParams {
-  userId?: string;
   guestCount?: number;
   roomCount?: number;
   bathroomCount?: number;
@@ -14,7 +13,6 @@ export interface IListingParams {
 export default async function getListings(params: IListingParams) {
   try {
     const {
-      userId,
       guestCount,
       roomCount,
       bathroomCount,
@@ -25,10 +23,6 @@ export default async function getListings(params: IListingParams) {
     } = params;
 
     let query: any = {};
-
-    if (userId) {
-      query.userId = userId;
-    }
 
     if (category) {
       query.category = category;
