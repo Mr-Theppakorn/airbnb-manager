@@ -41,9 +41,7 @@ export default async function getListings(params: IListingParams) {
     }
 
     if (guestCount) {
-      query.guestCount = {
-        gte: +guestCount,
-      };
+     query.guestCount = { gte: guestCount };
     }
 
     if (bathroomCount) {
