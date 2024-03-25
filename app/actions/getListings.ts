@@ -1,7 +1,7 @@
 import prisma from "@/libs/prismadb";
 
 export interface IListingParams {
-  userId?: number;
+  userId?: string;
   guestCount?: number;
   roomCount?: number;
   bathroomCount?: number;
@@ -41,7 +41,9 @@ export default async function getListings(params: IListingParams) {
     }
 
     if (guestCount) {
-     query.guestCount = { gte: guestCount };
+      query.guestCount = {
+        gte: +guestCount,
+      };
     }
 
     if (bathroomCount) {
